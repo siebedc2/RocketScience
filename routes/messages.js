@@ -1,25 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const messageController = require('../controllers/messages');
 
-router.get("/", (req, res) => {
-    res.json({
-        "status": "success",
-        "data": {
-            "todos": []
-        }
-    });
-});
+router.get("/", messageController.getAll);
 
-router.post("/", (req, res) => {
-    res.json({
-        "status": "success",
-        "data": {
-            "todo":{
-                "text": "Learn Node.js"
-            }
-        }
-    });
-});
+router.post("/", messageController.create);
 
 
 module.exports = router;
