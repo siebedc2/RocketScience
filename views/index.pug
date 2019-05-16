@@ -1,5 +1,92 @@
-extends layout
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet" href="/stylesheets/css/reset.css")
+        link(rel="stylesheet" href="/stylesheets/css/app.css")
+        title Home - RocketScience
+    body
+        div.container
+            div.left_side
+                h1 RocketScience
+                div.users_side
+                    div.persons
+                        h2 Users online
+                        div.user
+                            div.user__image(style="background-image: url(http://www.imirafoto.nl/wp-content/uploads/2016/12/Bureau-Control-Website-foto-455-1.jpg)")
+                            span.user__name Siebe De Celle
+                            div.user__status.status--online
+                        div.user
+                            div.user__image(style="background-image: url(http://www.paulkampman.nl/wp/wp-content/uploads/2011/11/Pieter-1-512x495.jpg)")
+                            span.user__name Robin Van Buggenhout
+                            div.user__status.status--away
+                        div.user
+                            div.user__image(style="background-image: url(https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg)")
+                            span.user__name Joris Hens
+                            div.user__status.status--offline
+                        div.user
+                            div.user__image(style="background-image: url(http://www.breakingscience.be/src/Frontend/Files/blog/images/source/einstein-een-rebels-genie.jpg)")
+                            span.user__name Albert Einstein
+                            div.user__status.status--busy
+                        div.user
+                            div.user__image(style="background-image: url(https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg)")
+                            span.user__name Joris Hens
+                            div.user__status.status--online
+                        div.user
+                            div.user__image(style="background-image: url(http://www.breakingscience.be/src/Frontend/Files/blog/images/source/einstein-een-rebels-genie.jpg)")
+                            span.user__name Bram Theunis
+                            div.user__status.status--offline
+                    div.bots
+                        h2 Bots
+                        div.user.bot
+                            div.user__image(style="background-image: url(https://www.digitopia.be/wp-content/uploads/2017/10/Kunstmatige-intelligentie-robot-Pepper-1-1.jpg)")
+                            span.user__name AI assistant
+                            div.user__status.bot--status.status--online
+            div.right_side
+                div.scroll-messages
+                    a.btn.last--message(href="#chat") 
+                        p Back to bottom
+                div.messages_side
+                    div.messages
+                        div.message
+                            div.profile__image(style="background-image:url(https://www.linkfotografie.nl/cache/r/linkedin_profielfoto_compositie.jpg)")
+                            div.messsage__content
+                                strong.message__author Tom
+                                p.message__text Hi there, This is an example message 👊.
+                        div.message
+                            div.profile__image(style="background-image:url(https://www.linkfotografie.nl/cache/r/linkedin_profielfoto_compositie.jpg)")
+                            div.messsage__content
+                                strong.message__author Tom
+                                p.message__text Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda dolorem, ex a tempore obcaecati quisquam consequuntur odio suscipit corporis fuga consequatur, tenetur exercitationem veniam impedit architecto soluta asperiores quae amet.
+                        div.message
+                            div.profile__image(style="background-image:url(https://www.linkfotografie.nl/cache/r/linkedin_profielfoto_compositie.jpg)")
+                            div.messsage__content
+                                strong.message__author Tom
+                                p.message__text Hi there, This is an example message 👊.
+                        div.message
+                            div.profile__image(style="background-image:url(https://www.linkfotografie.nl/cache/r/linkedin_profielfoto_compositie.jpg)")
+                            div.messsage__content
+                                strong.message__author Tom
+                                p.message__text Hi there, This is an example message 👊.
+                        div.message
+                            div.profile__image(style="background-image:url(https://www.linkfotografie.nl/cache/r/linkedin_profielfoto_compositie.jpg)")
+                            div.messsage__content
+                                strong.message__author Tom
+                                p.message__text Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nihil qui rem autem facere nobis non illum veritatis quod praesentium cumque aliquam ratione eaque, laboriosam ipsam quibusdam a nulla ut!
+                        div.message
+                            div.profile__image(style="background-image:url(https://www.linkfotografie.nl/cache/r/linkedin_profielfoto_compositie.jpg)")
+                            div.messsage__content
+                                strong.message__author Tom
+                                p.message__text Hi there, This is an example message 👊.
+                        div#chat
+                div.form
+                    div.aligner
+                        textarea.message__input(name="message", placeholder="Type message...")
+                        button.message__send(type='submit')
+                            img.button__image(src="images/send.png" alt="send") 
+    script.
+        document.querySelector('.last--message').click();
 
-block content
-  h1= title
-  p Welcome to #{title}
+    script(src="/javascripts/index.js")
