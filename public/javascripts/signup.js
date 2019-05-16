@@ -22,7 +22,7 @@ document.querySelector(".submit").addEventListener("click", (e) => {
             
             let token = json.data.token;
             localStorage.setItem("token", token);
-            window.location.href = "/api/v1/messages";
+            window.location.href = "/";
 
         } 
     })
