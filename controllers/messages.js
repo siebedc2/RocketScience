@@ -16,7 +16,7 @@ const getAll = (req, res) => {
 const create = (req, res, next) => {
     let message = new Message();
     message.text = req.body.text;
-    message.user = req.body.username;
+    message.user = req.user._id;
     message.save( (err, doc) => {
         if (err){
             res.json({

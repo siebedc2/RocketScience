@@ -7,6 +7,7 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const messageRouter = require('./routes/messages');
+const passport = require('./passport/passport');
 
 const mongoose = require('mongoose');
 // Aangeven dat we met nieuwe syntax werken
@@ -30,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/v1/messages', messageRouter);
+app.use('/api/v1/messages', passport.authenticate('jwt', {session: false}), messageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
