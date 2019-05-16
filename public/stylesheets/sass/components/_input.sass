@@ -1,0 +1,64 @@
+.message__input
+    box-sizing: border-box
+    color: white
+    background: #F10175
+    position: relative
+    left: 10px;
+    max-width: 400px
+    min-width: 200px
+    height: 55px
+    border: 4px solid #8A0043
+    padding: 13px 10px
+    font-size: 14px
+    resize: none
+    line-height: 18px
+    flex: 1 80%
+
+    &::placeholder 
+        color: white
+
+.signup__form
+    width: 200px
+    display: flex
+    flex-flow: column wrap
+    background: transparentize(white, .8)
+    padding: 20px 30px
+    border-radius: 10px
+
+label
+    color: white
+    margin: 10px 0 5px
+
+.username, .password
+    box-sizing: border-box
+    color: white
+    background: transparentize(white, .6)
+    padding: 13px 10px
+    font-size: 14px
+    border: none
+    border-radius: 5px
+    width: 100%
+
+    &::placeholder
+        color: white
+
+.submit
+    font-size: 12px
+    padding: 15px 20px
+    border-radius: 50px
+    text-transform: uppercase
+    text-align: center
+    width: 150px
+    border: none
+    color: white
+    margin: 20px auto 0
+    box-sizing: border-box
+    background: transparentize(#F10175, 0)
+    cursor: pointer
+    transition: all .2s
+    -webkit-transition: all .2s
+    -moz-transition: all .2s
+    -o-transition: all .2s
+
+    &:hover
+        background: transparentize(#F10175, .3)

@@ -1,0 +1,9 @@
+// MEDIA QUERY FOR MOBILE
+@mixin mobile
+    @media only screen and (max-width: 850px)
+        @content;
+
+// MEDIA QUERY FOR DESKTOP
+@mixin desktop
+    @media only screen and (min-width: 850px)
+        @content;

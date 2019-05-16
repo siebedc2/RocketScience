@@ -1,0 +1,55 @@
+@include mobile
+
+    body
+        font-family: $font-stack
+        background: $dark-purple
+        margin: 0
+        padding: 0
+
+    h1, h2, strong, span, p
+        color: white
+        
+    strong 
+        font-weight: bold
+
+    h1 
+        text-align: center
+        font-size: 1.5em
+        margin-bottom: 30px
+
+    .users_side 
+        display: none
+
+    .right_side
+        position: relative
+
+    .messages_side 
+        height: calc(100vh - 95px)
+        overflow: scroll
+        padding-bottom: 90px
+        box-sizing: border-box
+
+    .scroll-messages
+        font-size: 12px
+        padding: 2px 20px
+        border-radius: 50px
+        text-transform: uppercase
+        text-align: center
+        width: 150px
+        box-sizing: border-box
+        background: #4E4D6C
+        margin: 0 auto 15px
+
+    .form
+        width: 100%
+        background: $dark-purple
+        padding: 20px 20px
+        position: absolute
+        bottom: 0
+        box-sizing: border-box
+
+    .aligner 
+        max-width: 450px
+        margin: 0 auto
+        display: flex
+        flex-flow: row nowrap

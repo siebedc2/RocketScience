@@ -1,0 +1,65 @@
+@include desktop
+
+    h1
+        border: 3px solid $light-purple
+        margin: 0
+        padding: 30px 0
+        font-size: 1.7em
+        margin-bottom: -3px
+
+    .user_side
+        display: inherit
+        flex: 1 1
+        display: flex
+        flex-flow: column nowrap
+        padding: 0 30px
+        border: 3px solid $light-purple
+        overflow-x: hidden
+        overflow-y: scroll
+
+    .right_side
+        position: inherit
+        display: flex
+        flex-flow: column nowrap
+
+    .container
+        display: flex
+        flex-flow: row nowrap
+    
+    .left_side
+        display: flex
+        flex-direction: column
+        flex: 1 20%
+        height: 100vh
+        min-width: 270px
+        overflow-x: hidden
+        overflow-y: hidden
+
+    .right_side
+        display: flex
+        flex-direction: column
+        flex: 1 70%
+
+    .messages
+        margin: 0 0 0 30px
+
+    .message
+        width: calc(100% - 150px)
+        max-width: 850px
+        margin: 30px 0 0        
+
+    .scroll-messages
+        position: relative
+        left: 30px
+        top: 20px
+        margin: 0
+
+    .form
+        width: 68%
+
+    .aligner
+        max-width: 100%
+        margin: 0
+
+    .message__input
+        max-width: 800px

@@ -1,0 +1,36 @@
+.message__send
+    flex: 1 20%
+    background: #F10175
+    border: #F10175
+    border-radius: 100%
+    min-width: 50px
+    max-width: 50px
+    min-height: 50px
+    max-height: 50px
+    position: relative
+    top: 2px
+    left: 10px
+    margin-left: 10px
+    transition: all .2s
+    cursor: pointer
+    overflow: hidden
+    
+    &:hover
+        background: $dark-btn-purple
+        transform: scale(1.1)
+
+        .button__image
+            animation: spaceship infinite 3s
+
+    &:focus 
+        transform: scale(.9)
+
+.button__image
+    width: 20px
+    height: 20px
+    padding: 5px
+    position: relative
+    top: 2px;
+    left: -.5px;
+    transform: rotate(90deg)
+    transition: all .2s

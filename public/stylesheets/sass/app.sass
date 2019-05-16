@@ -1,0 +1,130 @@
+@import 'variables.sass'
+@import 'queries/_queries.sass'
+@import 'components/_scrollbar.sass'
+@import 'components/_btn.sass'
+@import 'components/_user.sass'
+@import 'components/_input.sass'
+@import 'components/_message.sass'
+@import 'animations/_spaceship.sass'
+
+body
+    font-family: $font-stack
+    background: $dark-purple
+    margin: 0
+    padding: 0
+
+h1, h2, strong, span, p
+    color: white
+    
+strong 
+    font-weight: bold
+
+h1 
+    text-align: center
+    font-size: 1.5em
+    margin-bottom: 30px
+    
+    @include desktop
+        border: 3px solid $light-purple
+        margin: 0
+        padding: 30px 0
+        font-size: 1.7em
+        margin-bottom: -3px
+
+.users_side 
+    display: none
+
+    @include desktop
+        display: inherit
+        flex: 1 1
+        display: flex
+        flex-flow: column nowrap
+        padding: 0 30px
+        border: 3px solid $light-purple
+        overflow-x: hidden
+        overflow-y: scroll
+
+.right_side
+    position: relative
+
+    @include desktop
+        position: inherit
+        display: flex
+        flex-flow: column nowrap
+
+.messages_side 
+    height: calc(100vh - 95px)
+    padding-bottom: 90px
+    box-sizing: border-box
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+@include desktop
+
+    .container
+        display: flex
+        flex-flow: row nowrap
+    
+    .left_side
+        display: flex
+        flex-direction: column
+        flex: 1 20%
+        height: 100vh
+        min-width: 270px
+        overflow-x: hidden
+        overflow-y: hidden
+
+    .right_side
+        display: flex
+        flex-direction: column
+        flex: 1 70%
+
+    .messages
+        margin: 0 0 0 30px
+
+    .message
+        width: calc(100% - 150px)
+        max-width: 850px
+        margin: 30px 0 0          
+
+.scroll-messages
+    font-size: 12px
+    padding: 2px 20px
+    border-radius: 50px
+    text-transform: uppercase
+    text-align: center
+    width: 150px
+    box-sizing: border-box
+    background: #4E4D6C
+    margin: 0 auto 15px
+
+    @include desktop
+        position: relative
+        left: 30px
+        top: 20px
+        margin: 0
+
+.form
+    width: 100%
+    background: $dark-purple
+    padding: 20px 20px
+    position: absolute
+    bottom: 0
+    box-sizing: border-box
+
+    @include desktop
+        width: 68%
+
+.aligner 
+    max-width: 450px
+    margin: 0 auto
+    display: flex
+    flex-flow: row nowrap
+
+    @include desktop
+        max-width: 100%
+        margin: 0
+
+.message__input
+    @include desktop
+        max-width: 800px
