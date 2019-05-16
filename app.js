@@ -9,6 +9,8 @@ const usersRouter = require('./routes/users');
 const messageRouter = require('./routes/messages');
 
 const mongoose = require('mongoose');
+// Aangeven dat we met nieuwe syntax werken
+mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb://localhost:27017/messages', {
   useNewUrlParser: true
 });
