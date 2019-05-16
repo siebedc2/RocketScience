@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet" href="/stylesheets/css/reset.css")
+        link(rel="stylesheet" href="/stylesheets/css/signup.css")
+        title Signup - RocketScience
+    body
+        div.container.signup--container
+            h1.signup--heading Signup
+            div.feedback
+                p.feedback__content
+            div.signup__form
+                label(for="username") Username
+                input(type="text", name="username", placeholder="Username" class="username")
+                label(for="password") Password
+                input(type="password", name="password" placeholder="Password" class="password")
+                button.submit Signup
+
+        script(src="/javascripts/signup.js")
