@@ -17,11 +17,7 @@ fetch("/api/v1/messages", {
                 </div>
             </div>`;
         document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
-
-        //document.querySelector(".messages").appendChild(newMessage);
     });
-
-    
 
 
 }).catch(err => {
