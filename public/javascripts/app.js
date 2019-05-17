@@ -1,3 +1,21 @@
+
+// PRIMUS LIVE
+primus = Primus.connect("http://localhost:3000", {
+    reconnect: {
+        max: Infinity,
+        min: 500,
+        retries: 10
+    }
+});
+
+primus.on('data', (json) => {
+    if(json.action === "addMessage") {
+        appendMessage(json.data);
+    }
+});
+
+
+
 fetch("/api/v1/messages", {
     'headers': {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -23,11 +41,26 @@ fetch("/api/v1/messages", {
 }).catch(err => {
     console.log('ween ween ween');
     // Redirect to login-screen
-    window.location.href = "/";
+    window.location.href = "/users/login";
     // Delete token in localstorage
     window.localStorage.removeItem('token');
 
 });
+
+/* append a message */
+let appendMessage = (json) => {
+    let newMessage = `
+        <div class="message">
+            <div class="profile__image"></div>
+            <div class="message__content">
+                <strong class="message__author">${json.data.message._id}</strong>
+                <p class="message__text">${json.data.message.text}</p>
+            </div>
+        </div>`;
+                
+    document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
+}
+
 
 /* SEND MESSAGE */
 let send = document.querySelector('.message__send');
@@ -47,17 +80,17 @@ send.addEventListener("click", (e) => {
     .then(result => {
         return result.json();
     }).then(json => {
-        console.log(json.data.message.text);
+        //console.log(json.data.message.text);
+        message.value = "";
 
-        let newMessage = `
-            <div class="message">
-                <div class="profile__image"></div>
-                <div class="message__content">
-                    <strong class="message__author">${json.data.message._id}</strong>
-                    <p class="message__text">${json.data.message.text}</p>
-                </div>
-            </div>`;
-        document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
+        primus.write({
+            "action": "addMessage",
+            "data": json
+        });
+
+        // Anders kreeg je dubbele berichten
+        //appendMessage(json);
+
     }).catch(err => {
         console.log(err);
     })
