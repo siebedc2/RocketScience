@@ -1,5 +1,6 @@
 const passport =               require('passport');
 const User =                   require('../models/User');
+const config = require('config');
 
 passport.use(User.createStrategy());
 
@@ -11,7 +12,7 @@ var JwtStrategy =              require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
 var opts = {}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = "MyVerySecretWord";
+opts.secretOrKey = config.get('jwt.secret');
 
 // Zoek een gebruiker op basis van id
 passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
