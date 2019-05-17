@@ -1,8 +1,8 @@
-const { src, dest, watch, parallel } =    require('gulp');
-const sass =                              require('gulp-sass');
-const nodemon =                           require('gulp-nodemon');
-const cssnano  =                          require('gulp-cssnano');
-const align =                             require('gulp-align');
+const { src, dest, watch, parallel } =   require('gulp');
+const sass =                             require('gulp-sass');
+const nodemon =                          require('gulp-nodemon');
+const cssnano  =                         require('gulp-cssnano');
+const align =                            require('gulp-align');
 
 function sass2css(done) {
     src("./public/stylesheets/sass/app.sass")
@@ -62,7 +62,7 @@ function doAlign(done) {
 
     src('./public/javascripts/*.js')
         .pipe(align())
-        .pipe(dest('./passport/'));
+        .pipe(dest('./public/javascripts/'));
 
     done();
 
@@ -79,6 +79,7 @@ function doAlign(done) {
     done();
 }
 
-watch(["./public/stylesheets/sass/**/*.sass", "./**/*.js"], sass2css);
+watch("./public/stylesheets/sass/**/*.sass", sass2css, doCssNano);
 
-module.exports.default = parallel(sass2css, doNodemon, doCssNano, doAlign);
+module.exports.default = parallel(sass2css, doNodemon, doCssNano);
+module.exports.require = doAlign;
