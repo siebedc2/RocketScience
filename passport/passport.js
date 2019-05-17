@@ -1,5 +1,5 @@
-const passport = require('passport');
-const User = require('../models/User');
+const passport =      require('passport');
+const User =          require('../models/User');
 
 passport.use(User.createStrategy());
 
@@ -7,7 +7,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // WEBTOKEN (JWT)
-var JwtStrategy = require('passport-jwt').Strategy,
+var JwtStrategy =     require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
 var opts = {}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
