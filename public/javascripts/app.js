@@ -27,7 +27,10 @@ fetch("/api/v1/messages", {
 }).catch(err => {
     console.log('ween ween ween');
     // Redirect to login-screen
+    window.location.href = "/";
     // Delete token in localstorage
+    window.localStorage.removeItem('token');
+
 });
 
 /* SEND MESSAGE */
