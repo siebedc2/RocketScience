@@ -1,5 +1,5 @@
-const User =  require('../models/User');
-const jwt =   require('jsonwebtoken');
+const User =   require('../models/User');
+const jwt =    require('jsonwebtoken');
 
 const signup = async (req, res, next) => {
     console.log(req.body);
