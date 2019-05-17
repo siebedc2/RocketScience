@@ -1,15 +1,15 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors');
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const messageRouter = require('./routes/messages');
-const passport = require('./passport/passport');
+const createError =    require('http-errors');
+const express =        require('express');
+const path =           require('path');
+const cookieParser =   require('cookie-parser');
+const logger =         require('morgan');
+const cors =           require('cors');
+const indexRouter =    require('./routes/index');
+const usersRouter =    require('./routes/users');
+const messageRouter =  require('./routes/messages');
+const passport =       require('./passport/passport');
 
-const mongoose = require('mongoose');
+const mongoose =       require('mongoose');
 // Aangeven dat we met nieuwe syntax werken
 mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb://localhost:27017/messages', {
