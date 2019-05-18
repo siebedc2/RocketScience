@@ -21,7 +21,7 @@ const signup = async (req, res, next) => {
         }, config.get('jwt.secret'));
 
         res.json({
-            "status": "succes",
+            "status": "success",
             "data": {
                 "token": token
             }

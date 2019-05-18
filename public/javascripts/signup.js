@@ -15,15 +15,16 @@ document.querySelector(".submit").addEventListener("click", (e) => {
     }).then(response => {
         return response.json();
     }).then(json => {
-        if (json.status === "success") {
-            let feedback = document.querySelector(".feedback");
-            feedback.textContent = "Login failed."
-            feedback.classList.remove("hidden");
-            
+        if (json.status === "success") {            
             let token = json.data.token;
             localStorage.setItem("token", token);
             window.location.href = "/";
-
-        } 
+        }
+        
+        else {
+            let feedback = document.querySelector(".feedback");
+            feedback.textContent = "Signup failed.";
+            feedback.classList.remove("hidden");
+        }
     })
 });

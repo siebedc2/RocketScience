@@ -15,7 +15,6 @@ primus.on('data', (json) => {
 });
 
 
-
 fetch("/api/v1/messages", {
     'headers': {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -53,7 +52,7 @@ let appendMessage = (json) => {
         <div class="message">
             <div class="profile__image"></div>
             <div class="message__content">
-                <strong class="message__author">${json.data.message._id}</strong>
+                <strong class="message__author">${json.data.message.user}</strong>
                 <p class="message__text">${json.data.message.text}</p>
             </div>
         </div>`;
