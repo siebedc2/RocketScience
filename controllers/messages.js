@@ -1,16 +1,42 @@
 const Message =   require('../models/Message');
 
 const getAll = (req, res) => {
-    Message.find({ }, (err, docs) => {
-        if(!err) {
-            res.json({
-                "status": "success",
-                "data": {
-                    "messages": docs
-                }
-            });
-        }
-    })    
+    if(req.query.user) {
+        let username = req.query.user;
+
+        Message.find({ "user": username }, (err, docs) => {
+            if(!err){
+                res.json({
+                    "status": "success",
+                    "data": {
+                        "messages": docs
+                    }
+                });
+            }
+        })
+    }
+
+    else {
+        Message.find({ }, (err, docs) => {
+            if(!err) {
+                res.json({
+                    "status": "success",
+                    "data": {
+                        "messages": docs
+                    }
+                });
+            }
+        })
+    }    
+}
+
+const getId = (req, res) => {
+    let id = req.params.id;
+
+    res.json({
+        "status": "success",
+        "message": "getting a message with id " + id
+    });
 }
 
 const create = (req, res, next) => {
@@ -36,5 +62,27 @@ const create = (req, res, next) => {
     })
 }
 
+const put = (req, res) => {
+    let id = req.params.id;
+
+    res.json({
+        "status": "success",
+        "message": "updating a message with id " + id
+    });
+
+}
+
+const remove = (req, res) => {
+    let id = req.params.id;
+
+    res.json({
+        "status": "success",
+        "message": "deleting a message with id " + id
+    });
+}
+
 module.exports.getAll = getAll;
+module.exports.getId = getId;
 module.exports.create = create;
+module.exports.put = put;
+module.exports.remove = remove;
