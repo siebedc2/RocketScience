@@ -66,17 +66,43 @@ const create = (req, res, next) => {
 }
 
 const put = (req, res) => {
-    let id = req.params.id;
+    let user = req.user.username;
+    let messageId = req.params.id;
+    let newMessage = req.body.text;
 
-    res.json({
-        "status": "success",
-        "message": "updating a message with id " + id
-    });
-
+    Message.findOneAndUpdate({
+        user: user,
+        _id: messageId
+    }, {
+        text: newMessage
+    }, {new: true}).then(doc => {
+        res.json({
+            "status": "success",
+            "data": {
+                "message": doc
+            }
+        })       
+    }).catch(err => {
+        res.json(err);
+    })
 }
 
 const remove = (req, res) => {
-    let id = req.params.id;
+    let user = req.user.username;
+    let messageId = req.params.id;
+
+    Message.findOneAndDelete({
+        user: user,
+        _id: messageId
+    }).then(result => {
+        res.json({
+            "status": "success",
+            "message": "deleted"
+        })
+    }).catch(err => {
+        res.json(err);
+    })
+
 
     res.json({
         "status": "success",

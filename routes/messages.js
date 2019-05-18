@@ -12,10 +12,10 @@ router.get("/:id", messageController.getId);
 router.post("/", messageController.create);
 
 // update a message
-router.put(":id", messageController.put);
+router.put("/:id", messageController.put);
 
 // delete a message
-router.delete(":id", messageController.remove);
+router.delete("/:id", messageController.remove);
 
 
 module.exports = router;
