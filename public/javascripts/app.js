@@ -1,5 +1,6 @@
 
 // PRIMUS LIVE
+// aanpassen voor online versie
 primus = Primus.connect("http://localhost:3000", {
     reconnect: {
         max: Infinity,
@@ -17,7 +18,7 @@ primus.on('data', (json) => {
 
     // to delete a message
     if(json.action === "removeMessage") {
-        
+        removeMessage(json.data);
     }
 
     // to update a message
@@ -65,6 +66,20 @@ fetch("/api/v1/messages", {
 
 });
 
+let removeMessage = (json) => {
+    console.log('delete message with primus');
+    console.log(json);
+    // get id of message to delete
+
+}
+
+let updateMessage = (json) => {
+    console.log('update message with primus');
+    console.log(json);
+    // get id of message to update
+
+}
+
 /* append a message */
 let appendMessage = (json) => {
     let newMessage = `
@@ -80,7 +95,6 @@ let appendMessage = (json) => {
                 
     document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
 }
-
 
 /* Bericht sturen */
 let send = document.querySelector('.message__send');
@@ -123,7 +137,9 @@ send.addEventListener("click", (e) => {
 document.querySelector(".messages").addEventListener("click", (e) => {
     if(e.target.classList.contains("message__delete")) {
         let messageId = e.target.getAttribute("data-id");
-        
+        let messageElem = e.target.parentElement.parentElement;
+        console.log(messageElem);
+
         fetch('/api/v1/messages/' + messageId, {
             method: "delete",
             'headers': {
@@ -137,12 +153,19 @@ document.querySelector(".messages").addEventListener("click", (e) => {
         .then(result => {
             return result.json();
         }).then(json => {
-            console.log(json);
-    
+            
+            primus.write({
+                "action": "removeMessage",
+                "data": json
+            });            
+            
+            //console.log(json);
+            //delete message from chat
+            //messageElem.style.display = "none";
+            
         }).catch(err => {
             console.log(err);
         })
-
     }
 })
 /* end of delete a message */
@@ -186,11 +209,17 @@ document.querySelector(".messages").addEventListener("click", (e) => {
                     return result.json();
                 }).then(json => {
                     // indien het updaten gelukt is
-                    if(json.status === "success") {
+                    /*if(json.status === "success") {
                         let newTextMessage = json.data.message.text;
                         messageElem.innerHTML = newTextMessage;                       
                         inputField.parentNode.replaceChild(messageElem, inputField);
-                    }
+                    }*/
+
+                    primus.write({
+                        "action": "updateMessage",
+                        "data": json
+                    });   
+
                 }).catch(err => {
                     console.log(err);
                 })
