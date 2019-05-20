@@ -102,12 +102,6 @@ const remove = (req, res) => {
     }).catch(err => {
         res.json(err);
     })
-
-
-    res.json({
-        "status": "success",
-        "message": "deleting a message with id " + id
-    });
 }
 
 module.exports.getAll = getAll;

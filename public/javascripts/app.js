@@ -142,8 +142,14 @@ document.querySelector(".messages").addEventListener("click", e => {
         let messageId = e.target.getAttribute("data-id");
         
         // get value of message
+
+
         // put it in an input-field
+
+
         // messageElement.parentNode.replaceChild(inputField, messageElement);
+        
+
         // enter -> bericht aanpassen
 
         

@@ -32,8 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-//app.use('/api/v1/messages', passport.authenticate('jwt', {session: false}), messageRouter);
-app.use('/api/v1/messages', messageRouter);
+app.use('/api/v1/messages', passport.authenticate('jwt', {session: false}), messageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
