@@ -10,9 +10,21 @@ primus = Primus.connect("http://localhost:3000", {
 
 // als de actoe addMessage is dan moet je een bericht toevoegen
 primus.on('data', (json) => {
+    // to add a message
     if(json.action === "addMessage") {
         appendMessage(json.data);
     }
+
+    // to delete a message
+    if(json.action === "removeMessage") {
+        
+    }
+
+    // to update a message
+    if(json.action === "updateMessage") {
+        updateMessage(json.data);
+    }
+
 });
 
 
@@ -158,8 +170,6 @@ document.querySelector(".messages").addEventListener("click", (e) => {
             if (event.keyCode == 13 || event.which == 13) {
                 
                 let newMessage = inputField.value;
-            
-                //console.log(newMessage);
                     
                 fetch('/api/v1/messages/'+messageId, {
                     method: "put",
@@ -173,9 +183,14 @@ document.querySelector(".messages").addEventListener("click", (e) => {
                     })
                 })
                 .then(result => {
-                        return result.json();
+                    return result.json();
                 }).then(json => {
-                    console.log(json);
+                    // indien het updaten gelukt is
+                    if(json.status === "success") {
+                        let newTextMessage = json.data.message.text;
+                        messageElem.innerHTML = newTextMessage;                       
+                        inputField.parentNode.replaceChild(messageElem, inputField);
+                    }
                 }).catch(err => {
                     console.log(err);
                 })
