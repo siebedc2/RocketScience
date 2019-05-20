@@ -108,7 +108,7 @@ send.addEventListener("click", (e) => {
 /* end of post a message */
 
 /* delete a message */
-document.querySelector(".messages").addEventListener("click", e => {
+document.querySelector(".messages").addEventListener("click", (e) => {
     if(e.target.classList.contains("message__delete")) {
         let messageId = e.target.getAttribute("data-id");
         
@@ -137,42 +137,51 @@ document.querySelector(".messages").addEventListener("click", e => {
 
 
 /* edit a message */
-document.querySelector(".messages").addEventListener("click", e => {
+document.querySelector(".messages").addEventListener("click", (e) => {
     if(e.target.classList.contains("message__edit")) {
         let messageId = e.target.getAttribute("data-id");
         
         // get value of message
-
+        let messageElem = e.target.previousElementSibling.previousElementSibling;
+        //console.log(messageElem);
 
         // put it in an input-field
+        let inputField = document.createElement('input');
+        inputField.classList.add('message__text', 'input__message');
+        inputField.value = messageElem.innerHTML;
 
-
-        // messageElement.parentNode.replaceChild(inputField, messageElement);
-        
+        // change p tag to input field
+        messageElem.parentNode.replaceChild(inputField, messageElem);
 
         // enter -> bericht aanpassen
-
-        
-        fetch('/api/v1/messages/'+messageId, {
-            method: "put",
-            'headers': {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            },
-            body: JSON.stringify({
-                "messageId": messageId,
-                "text": text
-            })
+        inputField.addEventListener("keypress", (e) => {
+            if (event.keyCode == 13 || event.which == 13) {
+                
+                let newMessage = inputField.value;
+            
+                //console.log(newMessage);
+                    
+                fetch('/api/v1/messages/'+messageId, {
+                    method: "put",
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    },
+                    body: JSON.stringify({
+                        "messageId": messageId,  
+                        "text": newMessage
+                    })
+                })
+                .then(result => {
+                        return result.json();
+                }).then(json => {
+                    console.log(json);
+                }).catch(err => {
+                    console.log(err);
+                })
+            
+            }
         })
-        .then(result => {
-            return result.json();
-        }).then(json => {
-            console.log(json);
-    
-        }).catch(err => {
-            console.log(err);
-        })
-
     }
 })
 /* end of edit a message */
