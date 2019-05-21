@@ -160,7 +160,7 @@ send.addEventListener("click", (e) => {
 /* end of post a message */
 
 class Weather {
-    getWeather(lat, lng) {
+    getWeather(lat, lng, location) {
         const API_KEY = "9c629e9e940a315667e2ecd2850ee870";
         let url = `//cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${lat},${lng}?units=si`;
         fetch(url)
@@ -168,31 +168,20 @@ class Weather {
                 return response.json();
             }) 
             .then(json => {
-                let temp = document.createElement("h1");
-                temp.innerHTML = json.currently.summary;
-                document.querySelector(".container").appendChild(temp);
-                let gif = json.currently.icon;
-                switch (gif) {
-                    case "partly-cloudy-day":
-                        this.getGif("cloudy");
-                        break;
+                let temp = json.currently.summary;
 
-                    case "partly-cloudy-night":
-                        this.getGif("moon");
-                        break;
+                let newMessage = `
+                <div class="message" data-id="${temp}">
+                    <div class="profile__image"></div>
+                    <div class="message__content">
+                        <strong class="message__author">AI assistant</strong>
+                        <p class="message__text">The weather in ${location} is ${temp}.</p>
+                        <a class="message__delete" href="#" data-id="${temp}">Delete</a>
+                        <a class="message__edit" href="#" data-id="${temp}">Edit</a>
+                    </div>
+                </div>`;
 
-                    case "clear-day":
-                        this.getGif("sunny");
-                        break;
-
-                    case "clear-night":
-                        this.getGif("moon");
-                        break;
-                
-                    default:
-                        this.getGif(gif);
-                        break;
-                }
+                document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
             });
     }
 }
@@ -215,12 +204,15 @@ function bot(botMessage) {
 
             if ( intent == 'get_weather' ) {
                 // wheater
+                
                 let lat = result.entities.location[0].resolved.values[0].coords.lat;
                 let lng = result.entities.location[0].resolved.values[0].coords.long;
-
+                let location = result.entities.location[0].value;
+                let date = result.entities.datetime[0].value;
+                
                 let wheater = new Weather();
-                wheater.getWeather(lat, lng);
-
+                wheater.getWeather(lat, lng, location);
+                
             } else if ( intent == 'get_skills' ) {
                 // skills
             } else {
