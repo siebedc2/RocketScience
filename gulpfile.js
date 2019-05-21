@@ -28,17 +28,17 @@ function doNodemon(done) {
 }
 
 function doCssNano(done) {
-    src('./public/stylesheets/css/app.css')
-        .pipe(cssnano())
-        .pipe(dest('./public/stylesheets/css/dist'));
+        src('./public/stylesheets/css/app.css')
+            .pipe(cssnano())
+            .pipe(dest('./public/stylesheets/css/dist'));
     
-    done();
+        done();
 
-    src('./public/stylesheets/css/signup.css')
-        .pipe(cssnano())
-        .pipe(dest('./public/stylesheets/css/dist'));
+        src('./public/stylesheets/css/signup.css')
+            .pipe(cssnano())
+            .pipe(dest('./public/stylesheets/css/dist'));
     
-    done();
+        done();
 }
 
 function doAlign(done) {
@@ -79,7 +79,8 @@ function doAlign(done) {
     done();
 }
 
-watch("./public/stylesheets/sass/**/*.sass", sass2css, doCssNano);
+watch("./public/stylesheets/sass/**/*.sass", sass2css);
+watch("./public/stylesheets/css/*.css", doCssNano);
 
-module.exports.default = parallel(sass2css, doNodemon, doCssNano);
+module.exports.default = parallel(sass2css, doCssNano, doNodemon);
 module.exports.require = doAlign;

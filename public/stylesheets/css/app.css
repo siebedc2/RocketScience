@@ -175,6 +175,65 @@ label {
   font-size: 13px;
   letter-spacing: .3px; }
 
+.profile {
+  background: #7A78C8;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  text-align: center; }
+
+.description {
+  line-height: 1.5em;
+  font-size: .85em;
+  font-style: italic; }
+
+.skills {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 50px; }
+
+.skill {
+  margin: 0 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  min-width: 85px; }
+
+.skill--img {
+  width: 35px;
+  height: 35px;
+  background: #62E197;
+  border-radius: 50%; }
+
+.skill--name {
+  margin-top: 10px; }
+
+.profile--content form {
+  padding: 20px 20px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  text-align: center; }
+
+.input--skill {
+  border: none;
+  background: #7A78C8;
+  margin-bottom: 10px;
+  padding: 15px;
+  color: white;
+  border-radius: 5px; }
+  .input--skill::placeholder {
+    color: white; }
+
+.btn--skill {
+  margin-top: 5px;
+  color: white;
+  background: #F10175;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  appearance: none; }
+
 @keyframes spaceship {
   0% {
     top: 2px;

@@ -5,7 +5,28 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         link(rel="stylesheet" href="/stylesheets/css/dist/reset.css")
-        link(rel="stylesheet" href="/stylesheets/css/dist/signup.css")
+        link(rel="stylesheet" href="/stylesheets/css/dist/app.css")
         title Profile - RocketScience
     body
-        
+        main.profile--content
+            div.profile
+                h2.profile--name Siebe De Celle
+                p.description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            div.skills
+                div.skill
+                    div.skill--img
+                    span.skill--name HTML
+                div.skill
+                    div.skill--img
+                    span.skill--name CSS
+                div.skill
+                    div.skill--img
+                    span.skill--name JavaScript
+                div.skill
+                    div.skill--img
+                    span.skill--name PHP
+            form(action="#", method="post")
+                input(type="text", name="skill" id="skill", placeholder="your skill here...").input--skill
+                br
+                input(type="submit", value="Add skill").btn--skill
+                        
