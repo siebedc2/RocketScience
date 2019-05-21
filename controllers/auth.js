@@ -60,7 +60,16 @@ const login = async (req, res, next) => {
             "message": error
         });
     });
-}
+};
+
+const getProfile = (req, res) => {
+    let user = req.user;
+    console.log("req" + req.user);
+    res.json({
+        "user": user
+    });
+};
 
 module.exports.signup = signup;
 module.exports.login = login;
+module.exports.getProfile = getProfile;
