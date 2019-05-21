@@ -144,9 +144,96 @@ send.addEventListener("click", (e) => {
         console.log(err);
     })
     
+    // get prefix for bot
+    let prefix = text.substr(0, 5);
+
+    if ( prefix == '@bot ' ) {
+        // bot word aangesproken
+        // query pakken zonder prefix
+        let botMessage = text.substr(5, 275);
+        bot(botMessage);
+    } else {
+        // bot word niet aangesproken
+    }
+
     e.preventDefault();
 })
 /* end of post a message */
+
+class Weather {
+    getWeather(lat, lng) {
+        const API_KEY = "9c629e9e940a315667e2ecd2850ee870";
+        let url = `//cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${lat},${lng}?units=si`;
+        fetch(url)
+            .then(response => {
+                return response.json();
+            }) 
+            .then(json => {
+                let temp = document.createElement("h1");
+                temp.innerHTML = json.currently.summary;
+                document.querySelector(".container").appendChild(temp);
+                let gif = json.currently.icon;
+                switch (gif) {
+                    case "partly-cloudy-day":
+                        this.getGif("cloudy");
+                        break;
+
+                    case "partly-cloudy-night":
+                        this.getGif("moon");
+                        break;
+
+                    case "clear-day":
+                        this.getGif("sunny");
+                        break;
+
+                    case "clear-night":
+                        this.getGif("moon");
+                        break;
+                
+                    default:
+                        this.getGif(gif);
+                        break;
+                }
+            });
+    }
+}
+
+/* get answer from bot  */
+function bot(botMessage) {
+    const q = encodeURIComponent(botMessage);
+    const uri = 'https://api.wit.ai/message?q=' + q;
+    const auth = 'Bearer ' + '2LCPS4V4QI2JERU7OQV3VWAM5M45MXN7';
+  
+    fetch(uri, {headers: {Authorization: auth}})
+        .then(res => {
+            return res.json()
+        })
+        .then(result => {
+            console.log(result)
+
+            let intent = result.entities.intent[0].value
+            console.log('intent: ', intent);
+
+            if ( intent == 'get_weather' ) {
+                // wheater
+                let lat = result.entities.location[0].resolved.values[0].coords.lat;
+                let lng = result.entities.location[0].resolved.values[0].coords.long;
+
+                let wheater = new Weather();
+                wheater.getWeather(lat, lng);
+
+            } else if ( intent == 'get_skills' ) {
+                // skills
+            } else {
+                // nothing
+                console.log("command not found...");
+            }
+
+        })
+        .catch(err => {
+            console.log("Error:", err);
+        })
+}
 
 /* delete a message */
 document.querySelector(".messages").addEventListener("click", (e) => {
