@@ -175,10 +175,29 @@ label {
   font-size: 13px;
   letter-spacing: .3px; }
 
-.profile {
+.profile--header {
   background: #7A78C8;
-  padding: 10px 20px;
   box-sizing: border-box;
+  text-align: center;
+  height: 80px; }
+
+.profile--image {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+  top: 15px;
+  background-image: url("https://3dwebfx.nl/wp-content/uploads/2015/09/Rocket-science.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+.profile--container {
+  padding: 0 20px; }
+
+.profile--information {
+  margin-top: 90px;
   text-align: center; }
 
 .description {
@@ -190,24 +209,17 @@ label {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin-top: 50px; }
-
-.skill {
-  margin: 0 15px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  min-width: 85px; }
-
-.skill--img {
-  width: 35px;
-  height: 35px;
-  background: #62E197;
-  border-radius: 50%; }
+  margin-top: 50px;
+  text-align: center; }
 
 .skill--name {
-  margin-top: 10px; }
+  margin-top: 10px;
+  padding: 10px 0;
+  width: 100%;
+  font-weight: light;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background: rgba(255, 255, 255, 0.2); }
 
 .profile--content form {
   padding: 20px 20px;
@@ -221,7 +233,8 @@ label {
   margin-bottom: 10px;
   padding: 15px;
   color: white;
-  border-radius: 5px; }
+  border-radius: 5px;
+  text-align: center; }
   .input--skill::placeholder {
     color: white; }
 
@@ -232,7 +245,21 @@ label {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  appearance: none; }
+  appearance: none;
+  -moz-appearance: none;
+  -ms-progress-appearance: none;
+  -webkit-appearance: none;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -o-transition: all .3s; }
+  .btn--skill:hover {
+    background: #AA1B53;
+    transform: scale(1.1); }
+    .btn--skill:hover .button__image {
+      animation: spaceship infinite 3s; }
+  .btn--skill:focus {
+    transform: scale(0.9); }
 
 @keyframes spaceship {
   0% {
