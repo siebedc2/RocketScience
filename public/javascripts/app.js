@@ -79,21 +79,19 @@ let updateMessage = (json) => {
     console.log('update message with primus');
     console.log(json);
     // get id of message to update
-    // indien het updaten gelukt is
-    let messageElem = document.querySelector(`[data-id = '${json.data.message._id}']`).children[1].children[1];
-
-
-    console.log(messageElem);
-
-    let inputField = document.querySelector('.input__message');
-    //console.log(inputField);
-    //let child = message;
-    //console.log(child);
-
+    // get the input element
+    let inputField = document.querySelector(`[data-id = '${json.data.message._id}']`).children[1].children[1];
+    // create p tag to change with input field
+    let messageElem = document.createElement('p');
+    // set the classes
+    messageElem.classList.add('message__text');
+    // variabal with the new text
     let newTextMessage = json.data.message.text;
+    // fill innerHTML with new message
     messageElem.innerHTML = newTextMessage;   
-    
-    //inputField.parentNode.replaceChild(messageElem, inputField);
+    //console.log(messageElem);
+    // replace the input field with a p tag
+    inputField.parentNode.replaceChild(messageElem, inputField);
 
 }
 
