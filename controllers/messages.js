@@ -69,6 +69,7 @@ const put = (req, res) => {
     let user = req.user.username;
     let messageId = req.params.id;
     let newMessage = req.body.text;
+    
 
     Message.findOneAndUpdate({
         user: user,
@@ -97,7 +98,8 @@ const remove = (req, res) => {
     }).then(result => {
         res.json({
             "status": "success",
-            "message": "deleted"
+            "message": "deleted " + messageId,
+            "id": messageId
         })
     }).catch(err => {
         res.json(err);

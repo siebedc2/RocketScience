@@ -43,7 +43,7 @@ fetch("/api/v1/messages", {
         console.log(element);
                    
         let newMessage = `
-        <div class="message">
+        <div class="message" data-id="${element._id}">
             <div class="profile__image"></div>
             <div class="message__content">
                 <strong class="message__author">${element.user}</strong>
@@ -70,20 +70,37 @@ let removeMessage = (json) => {
     console.log('delete message with primus');
     console.log(json);
     // get id of message to delete
-
+    // delete message from chat
+    let message = document.querySelector(`[data-id = '${json.id}']`);
+    message.style.display = "none";
 }
 
 let updateMessage = (json) => {
     console.log('update message with primus');
     console.log(json);
     // get id of message to update
+    // indien het updaten gelukt is
+    let messageElem = document.querySelector(`[data-id = '${json.data.message._id}']`).children[1].children[1];
+
+
+    console.log(messageElem);
+
+    let inputField = document.querySelector('.input__message');
+    //console.log(inputField);
+    //let child = message;
+    //console.log(child);
+
+    let newTextMessage = json.data.message.text;
+    messageElem.innerHTML = newTextMessage;   
+    
+    //inputField.parentNode.replaceChild(messageElem, inputField);
 
 }
 
 /* append a message */
 let appendMessage = (json) => {
     let newMessage = `
-        <div class="message">
+        <div class="message" data-id="${json.data.message._id}">
             <div class="profile__image"></div>
             <div class="message__content">
                 <strong class="message__author">${json.data.message.user}</strong>
@@ -123,7 +140,7 @@ send.addEventListener("click", (e) => {
         });
 
         // Anders kreeg je dubbele berichten
-        //appendMessage(json);
+        // appendMessage(json);
 
     }).catch(err => {
         console.log(err);
@@ -138,7 +155,7 @@ document.querySelector(".messages").addEventListener("click", (e) => {
     if(e.target.classList.contains("message__delete")) {
         let messageId = e.target.getAttribute("data-id");
         let messageElem = e.target.parentElement.parentElement;
-        console.log(messageElem);
+        //console.log(messageElem);
 
         fetch('/api/v1/messages/' + messageId, {
             method: "delete",
@@ -160,8 +177,7 @@ document.querySelector(".messages").addEventListener("click", (e) => {
             });            
             
             //console.log(json);
-            //delete message from chat
-            //messageElem.style.display = "none";
+            
             
         }).catch(err => {
             console.log(err);
@@ -208,13 +224,7 @@ document.querySelector(".messages").addEventListener("click", (e) => {
                 .then(result => {
                     return result.json();
                 }).then(json => {
-                    // indien het updaten gelukt is
-                    /*if(json.status === "success") {
-                        let newTextMessage = json.data.message.text;
-                        messageElem.innerHTML = newTextMessage;                       
-                        inputField.parentNode.replaceChild(messageElem, inputField);
-                    }*/
-
+                    
                     primus.write({
                         "action": "updateMessage",
                         "data": json
