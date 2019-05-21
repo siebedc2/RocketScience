@@ -176,17 +176,22 @@ label {
   letter-spacing: .3px; }
 
 .profile--header {
-  background: #7A78C8;
+  background-image: url("https://cdn.redshift.autodesk.com/2017/09/staying-motivated-header.jpg");
   box-sizing: border-box;
   text-align: center;
-  height: 80px; }
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
 
 .profile--image {
   width: 130px;
   height: 130px;
   border-radius: 50%;
+  border: 10px solid #161541;
   margin: 0 auto;
   position: relative;
+  box-sizing: border-box;
   top: 15px;
   background-image: url("https://3dwebfx.nl/wp-content/uploads/2015/09/Rocket-science.jpg");
   background-size: cover;
@@ -245,6 +250,7 @@ label {
   padding: 10px;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
   appearance: none;
   -moz-appearance: none;
   -ms-progress-appearance: none;
@@ -256,8 +262,6 @@ label {
   .btn--skill:hover {
     background: #AA1B53;
     transform: scale(1.1); }
-    .btn--skill:hover .button__image {
-      animation: spaceship infinite 3s; }
   .btn--skill:focus {
     transform: scale(0.9); }
 
@@ -399,3 +403,26 @@ h1 {
 @media only screen and (min-width: 850px) {
   .message__input {
     max-width: 800px; } }
+
+@media only screen and (min-width: 850px) {
+  .profile--header {
+    height: 150px; }
+  .profile--image {
+    width: 200px;
+    height: 200px;
+    top: 50px; }
+  .profile--information {
+    margin-top: 120px; }
+  .description {
+    width: 400px;
+    margin: 0 auto; }
+  .skills {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center; }
+    .skills h2 {
+      width: 100%; }
+  .skill--name {
+    width: 25%;
+    margin: 0 10px 20px;
+    box-sizing: border-box; } }

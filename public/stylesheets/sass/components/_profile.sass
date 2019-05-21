@@ -1,15 +1,20 @@
 .profile--header
-    background: $light-purple
+    background-image: url('https://cdn.redshift.autodesk.com/2017/09/staying-motivated-header.jpg')
     box-sizing: border-box
     text-align: center
     height: 80px
+    background-size: cover
+    background-position: center
+    background-repeat: no-repeat
 
 .profile--image
     width: 130px
     height: 130px
     border-radius: 50%
+    border: 10px solid $dark-purple
     margin: 0 auto
     position: relative
+    box-sizing: border-box
     top: 15px
     background-image: url('https://3dwebfx.nl/wp-content/uploads/2015/09/Rocket-science.jpg')
     background-size: cover
@@ -69,6 +74,7 @@
     padding: 10px
     border: none
     border-radius: 5px
+    cursor: pointer
     appearance: none
     -moz-appearance: none
     -ms-progress-appearance: none
@@ -81,9 +87,6 @@
     &:hover
         background: $dark-btn-purple
         transform: scale(1.1)
-
-        .button__image
-            animation: spaceship infinite 3s
 
     &:focus 
         transform: scale(.9)
