@@ -11,11 +11,12 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', (req, res) => {
+/*router.get('/profile', (req, res) => {
   res.render('profile');
-});
+});*/
 
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
+router.get('/profile', authController.getProfile);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const Message =   require('../models/Message');
 
 const getAll = (req, res) => {
-    if(req.query.user) {
+    /*if(req.query.user) {
         let username = req.query.user;
 
         Message.find({ "user": username }, (err, docs) => {
@@ -27,7 +27,18 @@ const getAll = (req, res) => {
                 });
             }
         })
-    }    
+    }  */ 
+
+    Message.find({ }, (err, docs) => {
+        if(!err) {
+            res.json({
+                "status": "success",
+                "data": {
+                    "messages": docs
+                }
+            });
+        }
+    })
 }
 
 const getId = (req, res) => {

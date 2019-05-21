@@ -1,4 +1,3 @@
-
 // PRIMUS LIVE
 // aanpassen voor online versie
 primus = Primus.connect("http://localhost:3000", {
