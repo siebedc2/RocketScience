@@ -182,16 +182,7 @@ class Weather {
         const API_KEY = "9c629e9e940a315667e2ecd2850ee870";
         let url = `//cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${lat},${lng}?units=si`;
         
-        fetch(url, {
-            method: "post",
-            'headers': {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            },
-            body: JSON.stringify({
-                "text": text
-            })
-        })
+        fetch(url)
         .then(response => {
             return response.json();
         }) 
