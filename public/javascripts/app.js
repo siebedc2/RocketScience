@@ -200,7 +200,6 @@ function bot(botMessage) {
             console.log(result)
 
             let intent = result.entities.intent[0].value
-            console.log('intent: ', intent);
 
             if ( intent == 'get_weather' ) {
                 // wheater
@@ -208,7 +207,6 @@ function bot(botMessage) {
                 let lat = result.entities.location[0].resolved.values[0].coords.lat;
                 let lng = result.entities.location[0].resolved.values[0].coords.long;
                 let location = result.entities.location[0].value;
-                let date = result.entities.datetime[0].value;
                 
                 let wheater = new Weather();
                 wheater.getWeather(lat, lng, location);
