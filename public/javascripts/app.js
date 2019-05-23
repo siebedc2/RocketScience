@@ -56,21 +56,21 @@ fetch(onlineUrl + "/api/v1/messages", {
                     <a class="message__edit" href="#" data-id="${element._id}">Edit</a>
                 </div>
             </div>`;
+            document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage); 
         }
 
         else {
             let newMessage = `
-        <div class="message" data-id="${element._id}">
-            <div class="profile__image"></div>
-            <div class="message__content">
-                <strong class="message__author">${element.user}</strong>
-                <p class="message__text">${element.text}</p>
-            </div>
-        </div>`;
+            <div class="message" data-id="${element._id}">
+                <div class="profile__image"></div>
+                <div class="message__content">
+                    <strong class="message__author">${element.user}</strong>
+                    <p class="message__text">${element.text}</p>
+                </div>
+            </div>`;
+        document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage); 
         }
-                   
-        
-        document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);       
+                                 
     });
 
 
