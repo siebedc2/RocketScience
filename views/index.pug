@@ -51,15 +51,17 @@ html(lang="en")
                 div.messages_side
                     div.messages
                         
+                    div#chat
                 div.form
                     div.aligner
                         textarea.message__input(name="message", placeholder="Type message...")
                         button.message__send(type='submit')
                             img.button__image(src="images/send.png" alt="send")
-                div#chat
 
     script.
-        document.querySelector(".last--message").click();
+        setTimeout(() => {
+            document.querySelector(".last--message").click();
+        }, 1000);
 
     script(src="https://rocketscience1.herokuapp.com/primus/primus.js")
     script(src="/javascripts/app.js")
