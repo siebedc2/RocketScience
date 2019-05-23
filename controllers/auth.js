@@ -31,7 +31,7 @@ const signup = async (req, res, next) => {
             "status": "error"
         })
     });
-};
+}
 
 const login = async (req, res, next) => {
     const user = await User.authenticate()(req.body.username, req.body.password).then(result => {
@@ -60,15 +60,23 @@ const login = async (req, res, next) => {
             "message": error
         });
     });
-};
+}
 
 const getProfile = (req, res) => {
-    let user = req.user;
-    console.log("req" + req.user);
-    res.json({
-        "user": user
-    });
-};
+    let user = req;
+    // console.log(user);
+
+    User.find({ }, (err, docs) => {
+        if(!err) {
+            res.json({
+                "status": "success",
+                "data": {
+                    "user": docs
+                }
+            });
+        }
+    })
+}
 
 module.exports.signup = signup;
 module.exports.login = login;
