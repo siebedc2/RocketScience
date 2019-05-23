@@ -181,13 +181,48 @@ class Weather {
     getWeather(lat, lng, location) {
         const API_KEY = "9c629e9e940a315667e2ecd2850ee870";
         let url = `//cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${lat},${lng}?units=si`;
-        fetch(url)
-            .then(response => {
-                return response.json();
-            }) 
-            .then(json => {
-                let temp = json.currently.summary;
+        
+        fetch(url, {
+            method: "post",
+            'headers': {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                "text": text
+            })
+        })
+        .then(response => {
+            return response.json();
+        }) 
+        .then(json => {
+            
+            let temp = json.currently.summary;
+            let text = `The weather in ${location} is ${temp}`;
 
+            fetch(onlineUrl + '/api/v1/messages', {
+                method: "post",
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+                body: JSON.stringify({
+                    "text": text
+                })
+            })
+            .then(result => {
+                return result.json();
+            }).then(json => {
+                //console.log(json.data.message.text);
+                
+        
+                primus.write({
+                    "action": "addMessage",
+                    "data": json
+                });
+        
+                // Anders kreeg je dubbele berichten
+                // appendMessage(json);
                 let newMessage = `
                 <div class="message" data-id="${temp}">
                     <div class="profile__image"></div>
@@ -198,9 +233,15 @@ class Weather {
                         <a class="message__edit" href="#" data-id="${temp}">Edit</a>
                     </div>
                 </div>`;
-
+    
                 document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
-            });
+
+        
+            }).catch(err => {
+                console.log(err);
+            })
+            
+        });
     }
 }
 
