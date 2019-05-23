@@ -132,7 +132,7 @@ let appendMessage = (json) => {
     document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
 }
 
-let jaddMessageBot = (json) => {
+let addMessageBot = (json) => {
     let newMessage = `
         <div class="message" data-id="${json.data.message._id}">
             <div class="profile__image"></div>
