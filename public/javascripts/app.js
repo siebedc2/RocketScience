@@ -1,6 +1,6 @@
 // PRIMUS LIVE
 // aanpassen voor online versie
-primus = Primus.connect("http://localhost:3000", {
+primus = Primus.connect("https://rocketscience1.herokuapp.com", {
     reconnect: {
         max: Infinity,
         min: 500,
@@ -63,7 +63,7 @@ fetch("/api/v1/messages", {
     // Delete token in localstorage
     window.localStorage.removeItem('token');
 
-});
+})
 
 let removeMessage = (json) => {
     console.log('delete message with primus');
