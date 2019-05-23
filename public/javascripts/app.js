@@ -1,5 +1,5 @@
 let onlineUrl = "https://rocketscience1.herokuapp.com";
-document.querySelector(".last--message").click();
+
 // PRIMUS LIVE
 // aanpassen voor online versie
 primus = Primus.connect(onlineUrl, {
