@@ -1,41 +1,14 @@
 const Message =   require('../models/Message');
 
 const getAll = (req, res) => {
-    /*if(req.query.user) {
-        let username = req.query.user;
-
-        Message.find({ "user": username }, (err, docs) => {
-            if(!err){
-                res.json({
-                    "status": "success",
-                    "data": {
-                        "messages": docs
-                    }
-                });
-            }
-        })
-    }
-
-    else {
-        Message.find({ }, (err, docs) => {
-            if(!err) {
-                res.json({
-                    "status": "success",
-                    "data": {
-                        "messages": docs
-                    }
-                });
-            }
-        })
-    }  */ 
-
     Message.find({ }, (err, docs) => {
         if(!err) {
             res.json({
                 "status": "success",
                 "data": {
                     "messages": docs
-                }
+                },
+                "currentUser": req.user._id            
             });
         }
     })

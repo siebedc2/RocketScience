@@ -42,8 +42,10 @@ fetch(onlineUrl + "/api/v1/messages", {
 
     json.data.messages.forEach(function(element) {
         console.log(element);
+
+        appendMessage(element, json);
                    
-        let newMessage = `
+        /*let newMessage = `
         <div class="message" data-id="${element._id}">
             <div class="profile__image"></div>
             <div class="message__content">
@@ -54,7 +56,7 @@ fetch(onlineUrl + "/api/v1/messages", {
             </div>
         </div>`;
 
-        document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);       
+        document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);*/    
     });
 
 
@@ -97,8 +99,9 @@ let updateMessage = (json) => {
 }
 
 /* append a message */
-let appendMessage = (json) => {
-    let newMessage = `
+let appendMessage = (element, json) => {
+    if(currentUser == element.user) {
+        let newMessage = `
         <div class="message" data-id="${json.data.message._id}">
             <div class="profile__image"></div>
             <div class="message__content">
@@ -108,6 +111,29 @@ let appendMessage = (json) => {
                 <a class="message__edit" href="#" data-id="${json.data.message._id}">Edit</a>
             </div>
         </div>`;
+    }
+
+    else {
+        let newMessage = `
+        <div class="message" data-id="${json.data.message._id}">
+            <div class="profile__image"></div>
+            <div class="message__content">
+                <strong class="message__author">${json.data.message.user}</strong>
+                <p class="message__text">${json.data.message.text}</p>
+            </div>
+        </div>`;
+    }
+
+    /*let newMessage = `
+        <div class="message" data-id="${json.data.message._id}">
+            <div class="profile__image"></div>
+            <div class="message__content">
+                <strong class="message__author">${json.data.message.user}</strong>
+                <p class="message__text">${json.data.message.text}</p>
+                <a class="message__delete" href="#" data-id="${json.data.message._id}">Delete</a>
+                <a class="message__edit" href="#" data-id="${json.data.message._id}">Edit</a>
+            </div>
+        </div>`;*/
                 
     document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
 }
