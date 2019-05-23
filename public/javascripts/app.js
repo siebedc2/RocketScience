@@ -63,6 +63,18 @@ fetch(onlineUrl + "/api/v1/messages", {
             document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage); 
         }
 
+        else if (element.user == "AI assistant") {
+            let newMessage = `
+            <div class="message" data-id="${element._id}">
+                <div class="profile__image bot--image"></div>
+                <div class="message__content">
+                    <strong class="message__author">${element.user}</strong>
+                    <p class="message__text">${element.text}</p>
+                </div>
+            </div>`;
+            document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage); 
+        }
+
         else {
             let newMessage = `
             <div class="message" data-id="${element._id}">
@@ -122,6 +134,7 @@ let appendMessage = (json) => {
         <div class="message__content">
             <strong class="message__author">${json.data.message.user}</strong>
             <p class="message__text">${json.data.message.text}</p>
+
             <a class="message__delete" href="#" data-id="${json.data.message._id}">Delete</a>
             <a class="message__edit" href="#" data-id="${json.data.message._id}">Edit</a>
         </div>
