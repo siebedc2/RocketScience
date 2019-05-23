@@ -157,7 +157,8 @@ send.addEventListener("click", (e) => {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
         body: JSON.stringify({
-            "text": text
+            "text": text,
+            "username": "username"
         })
     })
     .then(result => {
@@ -215,7 +216,8 @@ class Weather {
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
                 body: JSON.stringify({
-                    "text": text
+                    "text": text, 
+                    "username": "AI assistant"
                 })
             })
             .then(result => {
