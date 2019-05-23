@@ -160,51 +160,56 @@ let addMessageBot = (json) => {
 /* Bericht sturen */
 let send = document.querySelector('.message__send');
 let message = document.querySelector('.message__input');
-send.addEventListener("click", (e) => {
-    let text = message.value;
-    fetch(onlineUrl + '/api/v1/messages', {
-        method: "post",
-        'headers': {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        },
-        body: JSON.stringify({
-            "text": text,
-            "username": "username"
+
+send.addEventListener('keypress', getMessage);
+
+function getMessage(e) {
+    if (e.code == 13) {
+        let text = message.value;
+        fetch(onlineUrl + '/api/v1/messages', {
+            method: "post",
+            'headers': {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                "text": text,
+                "username": "username"
+            })
         })
-    })
-    .then(result => {
-        return result.json();
-    }).then(json => {
-        //console.log(json.data.message.text);
-        message.value = "";
+        .then(result => {
+            return result.json();
+        }).then(json => {
+            //console.log(json.data.message.text);
+            message.value = "";
 
-        primus.write({
-            "action": "addMessage",
-            "data": json
-        });
+            primus.write({
+                "action": "addMessage",
+                "data": json
+            });
 
-        // Anders kreeg je dubbele berichten
-        // appendMessage(json);
+            // Anders kreeg je dubbele berichten
+            // appendMessage(json);
 
-    }).catch(err => {
-        console.log(err);
-    })
-    
-    // get prefix for bot
-    let prefix = text.substr(0, 5);
+        }).catch(err => {
+            console.log(err);
+        })
+        
+        // get prefix for bot
+        let prefix = text.substr(0, 5);
 
-    if ( prefix == '@bot ' ) {
-        // bot word aangesproken
-        // query pakken zonder prefix
-        let botMessage = text.substr(5, 275);
-        bot(botMessage);
-    } else {
-        // bot word niet aangesproken
+        if ( prefix == '@bot ' ) {
+            // bot word aangesproken
+            // query pakken zonder prefix
+            let botMessage = text.substr(5, 275);
+            bot(botMessage);
+        } else {
+            // bot word niet aangesproken
+        }
     }
 
     e.preventDefault();
-})
+}
 /* end of post a message */
 
 class Weather {
