@@ -2,7 +2,7 @@ let onlineUrl = "https://rocketscience1.herokuapp.com";
 
 // PRIMUS LIVE
 // aanpassen voor online versie
-primus = Primus.connect(url, {
+primus = Primus.connect(onlineUrl, {
     reconnect: {
         max: Infinity,
         min: 500,
@@ -40,20 +40,36 @@ fetch(onlineUrl + "/api/v1/messages", {
 
     console.log(json);
 
+    let currentUser = json.currentUser;
+
     json.data.messages.forEach(function(element) {
         console.log(element);
-                   
-        let newMessage = `
+        
+        if(currentUser = element.user) {
+            let newMessage = `
+            <div class="message" data-id="${element._id}">
+                <div class="profile__image"></div>
+                <div class="message__content">
+                    <strong class="message__author">${element.user}</strong>
+                    <p class="message__text">${element.text}</p>
+                    <a class="message__delete" href="#" data-id="${element._id}">Delete</a>
+                    <a class="message__edit" href="#" data-id="${element._id}">Edit</a>
+                </div>
+            </div>`;
+        }
+
+        else {
+            let newMessage = `
         <div class="message" data-id="${element._id}">
             <div class="profile__image"></div>
             <div class="message__content">
                 <strong class="message__author">${element.user}</strong>
                 <p class="message__text">${element.text}</p>
-                <a class="message__delete" href="#" data-id="${element._id}">Delete</a>
-                <a class="message__edit" href="#" data-id="${element._id}">Edit</a>
             </div>
         </div>`;
-
+        }
+                   
+        
         document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);       
     });
 
