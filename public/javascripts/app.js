@@ -133,7 +133,7 @@ let appendMessage = (json) => {
 let addMessageBot = (json) => {
     let newMessage = `
         <div class="message" data-id="${json.data.message._id}">
-            <div class="profile__image" style="background-image: url('https://cdn-images-1.medium.com/max/1600/1*OiKXrkvrsUqA105iY9iAwg.png%27);"></div>
+            <div class="profile__image" style="background-image: url('https://cdn-images-1.medium.com/max/1600/1*OiKXrkvrsUqA105iY9iAwg.png%27');"></div>
             <div class="message__content">
                 <strong class="message__author">AI assistant</strong>
                 <p class="message__text">${json.data.message.text}</p>
