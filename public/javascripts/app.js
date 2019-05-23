@@ -17,6 +17,10 @@ primus.on('data', (json) => {
         appendMessage(json.data);
     }
 
+    if(json.action === "addMessageBot") {
+        addMessageBot(json.data);
+    }
+
     // to delete a message
     if(json.action === "removeMessage") {
         removeMessage(json.data);
@@ -128,6 +132,19 @@ let appendMessage = (json) => {
     document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
 }
 
+let jaddMessageBot = (json) => {
+    let newMessage = `
+        <div class="message" data-id="${json.data.message._id}">
+            <div class="profile__image"></div>
+            <div class="message__content">
+                <strong class="message__author">AI assistant</strong>
+                <p class="message__text">${json.data.message.text}</p>
+            </div>
+        </div>`;
+    
+    document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
+}
+
 /* Bericht sturen */
 let send = document.querySelector('.message__send');
 let message = document.querySelector('.message__input');
@@ -198,8 +215,7 @@ class Weather {
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
                 body: JSON.stringify({
-                    "text": text,
-                    "username": "AI assistant"
+                    "text": text
                 })
             })
             .then(result => {
@@ -208,24 +224,13 @@ class Weather {
                 //console.log(json.data.message.text);
                 
                 primus.write({
-                    "action": "addMessage",
+                    "action": "addMessageBot",
                     "data": json
                 });
         
                 // Anders kreeg je dubbele berichten
                 // appendMessage(json);
-                let newMessage = `
-                <div class="message" data-id="${temp}">
-                    <div class="profile__image"></div>
-                    <div class="message__content">
-                        <strong class="message__author">AI assistant</strong>
-                        <p class="message__text">The weather in ${location} is ${temp}.</p>
-                        <a class="message__delete" href="#" data-id="${temp}">Delete</a>
-                        <a class="message__edit" href="#" data-id="${temp}">Edit</a>
-                    </div>
-                </div>`;
-    
-                document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
+                
 
         
             }).catch(err => {

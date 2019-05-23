@@ -29,14 +29,7 @@ const create = (req, res, next) => {
 
     console.log(req.user);
 
-    if(req.body.username == "AI assistant") {
-        message.user = req.body.username;
-    }
-    else {
-        message.user = req.user.username;
-    }
-
-    
+    message.user = req.user.username;
     message.save( (err, doc) => {
         if (err){
             res.json({
