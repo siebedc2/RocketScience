@@ -8,7 +8,7 @@ const getAll = (req, res) => {
                 "data": {
                     "messages": docs
                 },
-                "currentUser": req.user._id
+                "currentUser": req.user.username
             });
         }
     })
