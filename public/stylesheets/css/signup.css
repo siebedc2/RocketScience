@@ -60,6 +60,20 @@ label {
   .submit:hover {
     background: rgba(241, 1, 117, 0.7); }
 
+.message__delete,
+.message__edit {
+  color: #F10175; }
+
+.input__message {
+  display: block;
+  background: #2D2C70;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 5px; }
+  .input__message::placholder {
+    color: white; }
+
 body {
   font-family: Poppins, Helvetica, Arial, sans-serif;
   background: #161541;
