@@ -161,52 +161,57 @@ let addMessageBot = (json) => {
 let send = document.querySelector('.message__send');
 let message = document.querySelector('.message__input');
 
-send.addEventListener("keypress", (e) => {
-    if (event.keyCode === 13 || event.which === 13) {
+message.addEventListener("keypress", (event) => {
+    if (event.keyCode == 13 || event.which == 13) {
         e.preventDefault();
-        
-        let text = message.value;
-        fetch(onlineUrl + '/api/v1/messages', {
-            method: "post",
-            'headers': {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            },
-            body: JSON.stringify({
-                "text": text,
-                "username": "username"
-            })
-        })
-        .then(result => {
-            return result.json();
-        }).then(json => {
-            //console.log(json.data.message.text);
-            message.value = "";
-
-            primus.write({
-                "action": "addMessage",
-                "data": json
-            });
-
-            // Anders kreeg je dubbele berichten
-            // appendMessage(json);
-
-        }).catch(err => {
-            console.log(err);
-        })
-        
-        // get prefix for bot
-        let prefix = text.substr(0, 5);
-
-        if ( prefix == '@bot ' ) {
-            // bot word aangesproken
-            // query pakken zonder prefix
-            let botMessage = text.substr(5, 275);
-            bot(botMessage);
-        } else {
-            // bot word niet aangesproken
-        }
+        send.click();
     }
+});
+
+send.addEventListener((e) => {
+    let text = message.value;
+    fetch(onlineUrl + '/api/v1/messages', {
+        method: "post",
+        'headers': {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+            "text": text,
+            "username": "username"
+        })
+    })
+    .then(result => {
+        return result.json();
+    }).then(json => {
+        //console.log(json.data.message.text);
+        message.value = "";
+
+        primus.write({
+            "action": "addMessage",
+            "data": json
+        });
+
+        // Anders kreeg je dubbele berichten
+        // appendMessage(json);
+
+    }).catch(err => {
+        console.log(err);
+    })
+    
+    // get prefix for bot
+    let prefix = text.substr(0, 5);
+
+    if ( prefix == '@bot ' ) {
+        // bot word aangesproken
+        // query pakken zonder prefix
+        let botMessage = text.substr(5, 275);
+        bot(botMessage);
+    } else {
+        // bot word niet aangesproken
+    }
+
+    e.preventDefault();
 })
 /* end of post a message */
 
