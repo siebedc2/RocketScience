@@ -70,7 +70,9 @@ label {
   color: white;
   border: none;
   border-radius: 5px;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  padding: 5px;
+  box-sizing: border-box; }
   .input__message::placholder {
     color: white; }
 
