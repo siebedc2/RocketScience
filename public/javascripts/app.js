@@ -2,7 +2,7 @@ let onlineUrl = "https://rocketscience1.herokuapp.com";
 
 // PRIMUS LIVE
 // aanpassen voor online versie
-primus = Primus.connect(onlineUrl, {
+primus = Primus.connect(url, {
     reconnect: {
         max: Infinity,
         min: 500,
@@ -42,10 +42,8 @@ fetch(onlineUrl + "/api/v1/messages", {
 
     json.data.messages.forEach(function(element) {
         console.log(element);
-
-        appendMessage(element, json);
                    
-        /*let newMessage = `
+        let newMessage = `
         <div class="message" data-id="${element._id}">
             <div class="profile__image"></div>
             <div class="message__content">
@@ -56,7 +54,7 @@ fetch(onlineUrl + "/api/v1/messages", {
             </div>
         </div>`;
 
-        document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);*/    
+        document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);       
     });
 
 
@@ -99,9 +97,8 @@ let updateMessage = (json) => {
 }
 
 /* append a message */
-let appendMessage = (element, json) => {
-    if(currentUser == element.user) {
-        let newMessage = `
+let appendMessage = (json) => {
+    let newMessage = `
         <div class="message" data-id="${json.data.message._id}">
             <div class="profile__image"></div>
             <div class="message__content">
@@ -111,29 +108,6 @@ let appendMessage = (element, json) => {
                 <a class="message__edit" href="#" data-id="${json.data.message._id}">Edit</a>
             </div>
         </div>`;
-    }
-
-    else {
-        let newMessage = `
-        <div class="message" data-id="${json.data.message._id}">
-            <div class="profile__image"></div>
-            <div class="message__content">
-                <strong class="message__author">${json.data.message.user}</strong>
-                <p class="message__text">${json.data.message.text}</p>
-            </div>
-        </div>`;
-    }
-
-    /*let newMessage = `
-        <div class="message" data-id="${json.data.message._id}">
-            <div class="profile__image"></div>
-            <div class="message__content">
-                <strong class="message__author">${json.data.message.user}</strong>
-                <p class="message__text">${json.data.message.text}</p>
-                <a class="message__delete" href="#" data-id="${json.data.message._id}">Delete</a>
-                <a class="message__edit" href="#" data-id="${json.data.message._id}">Edit</a>
-            </div>
-        </div>`;*/
                 
     document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
 }
@@ -228,6 +202,7 @@ function bot(botMessage) {
             console.log(result)
 
             let intent = result.entities.intent[0].value
+            console.log('intent: ', intent);
 
             if ( intent == 'get_weather' ) {
                 // wheater
@@ -235,6 +210,7 @@ function bot(botMessage) {
                 let lat = result.entities.location[0].resolved.values[0].coords.lat;
                 let lng = result.entities.location[0].resolved.values[0].coords.long;
                 let location = result.entities.location[0].value;
+                let date = result.entities.datetime[0].value;
                 
                 let wheater = new Weather();
                 wheater.getWeather(lat, lng, location);

@@ -7,8 +7,7 @@ const getAll = (req, res) => {
                 "status": "success",
                 "data": {
                     "messages": docs
-                },
-                "currentUser": req.user._id            
+                }            
             });
         }
     })
