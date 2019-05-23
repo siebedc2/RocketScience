@@ -198,7 +198,8 @@ class Weather {
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
                 body: JSON.stringify({
-                    "text": text
+                    "text": text,
+                    "username": "AI assistant"
                 })
             })
             .then(result => {
@@ -206,7 +207,6 @@ class Weather {
             }).then(json => {
                 //console.log(json.data.message.text);
                 
-        
                 primus.write({
                     "action": "addMessage",
                     "data": json
