@@ -63,7 +63,7 @@ fetch(onlineUrl + "/api/v1/messages", {
             document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage); 
         }
 
-        else if (element.user) {
+        else if (element.user == "AI assistant") {
             let newMessage = `
             <div class="message" data-id="${element._id}">
                 <div class="profile__image bot--image"></div>
