@@ -1,6 +1,8 @@
+let onlineUrl = "https://rocketscience1.herokuapp.com";
+
 // PRIMUS LIVE
 // aanpassen voor online versie
-primus = Primus.connect("https://rocketscience1.herokuapp.com", {
+primus = Primus.connect(url, {
     reconnect: {
         max: Infinity,
         min: 500,
@@ -28,7 +30,7 @@ primus.on('data', (json) => {
 });
 
 
-fetch("/api/v1/messages", {
+fetch(onlineUrl + "/api/v1/messages", {
     'headers': {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     }
@@ -115,7 +117,7 @@ let send = document.querySelector('.message__send');
 let message = document.querySelector('.message__input');
 send.addEventListener("click", (e) => {
     let text = message.value;
-    fetch('/api/v1/messages', {
+    fetch(onlineUrl + '/api/v1/messages', {
         method: "post",
         'headers': {
             'Content-Type': 'application/json',
@@ -233,7 +235,7 @@ document.querySelector(".messages").addEventListener("click", (e) => {
         let messageElem = e.target.parentElement.parentElement;
         //console.log(messageElem);
 
-        fetch('/api/v1/messages/' + messageId, {
+        fetch(onlineUrl + '/api/v1/messages/' + messageId, {
             method: "delete",
             'headers': {
                 'Content-Type': 'application/json',
@@ -286,7 +288,7 @@ document.querySelector(".messages").addEventListener("click", (e) => {
                 
                 let newMessage = inputField.value;
                     
-                fetch('/api/v1/messages/'+messageId, {
+                fetch(onlineUrl + '/api/v1/messages/'+messageId, {
                     method: "put",
                     'headers': {
                         'Content-Type': 'application/json',
