@@ -128,50 +128,33 @@ let updateMessage = (json) => {
 
 /* append a message */
 let appendMessage = (json) => {
-
-    let currentUser = json.currentUser;
-
-    console.log(currentUser);
-
-    if(currentUser == json.data.message.user) {
-        let newMessage = `
-        <div class="message" data-id="${json.data.message._id}">
-            <div class="profile__image"></div>
-            <div class="message__content">
-                <strong class="message__author">${json.data.message.user}</strong>
-                <p class="message__text">${json.data.message.text}</p>
-                <a class="message__delete" href="#" data-id="${json.data.message._id}">Delete</a>
-                <a class="message__edit" href="#" data-id="${json.data.message._id}">Edit</a>
-            </div>
-        </div>`; 
-        document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
-    }
-
-    else {
-        let newMessage = `
-        <div class="message" data-id="${json.data.message._id}">
-            <div class="profile__image"></div>
-            <div class="message__content">
-                <strong class="message__author">${json.data.message.user}</strong>
-                <p class="message__text">${json.data.message.text}</p>
-            </div>
-        </div>`; 
-        document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
-    }    
+    
+    let newMessage = `
+    <div class="message" data-id="${json.data.message._id}">
+        <div class="profile__image"></div>
+        <div class="message__content">
+            <strong class="message__author">${json.data.message.user}</strong>
+            <p class="message__text">${json.data.message.text}</p>
+            <a class="message__delete" href="#" data-id="${json.data.message._id}">Delete</a>
+            <a class="message__edit" href="#" data-id="${json.data.message._id}">Edit</a>
+        </div>
+    </div>`; 
+    document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
+    document.querySelector(".last--message").click();
 }
 
 /* append a message of the bot */
 let addMessageBot = (json) => {
     let newMessage = `
-        <div class="message" data-id="${json.data.message._id}">
-            <div class="profile__image bot--image"></div>
-            <div class="message__content">
-                <strong class="message__author">AI assistant</strong>
-                <p class="message__text">${json.data.message.text}</p>
-            </div>
-        </div>`;
-    
+    <div class="message" data-id="${json.data.message._id}">
+        <div class="profile__image bot--image"></div>
+        <div class="message__content">
+            <strong class="message__author">AI assistant</strong>
+            <p class="message__text">${json.data.message.text}</p>
+        </div>
+    </div>`;
     document.querySelector(".messages").insertAdjacentHTML('beforeend', newMessage);
+    document.querySelector(".last--message").click();
 }
 
 /* Bericht sturen */
