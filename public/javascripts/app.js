@@ -131,6 +131,8 @@ let appendMessage = (json) => {
 
     let currentUser = json.currentUser;
 
+    console.log(currentUser);
+
     if(currentUser == json.data.message.user) {
         let newMessage = `
         <div class="message" data-id="${json.data.message._id}">
