@@ -161,10 +161,10 @@ let addMessageBot = (json) => {
 let send = document.querySelector('.message__send');
 let message = document.querySelector('.message__input');
 
-send.addEventListener('keypress', getMessage);
-
-function getMessage(e) {
-    if (e.code == 13) {
+send.addEventListener("keypress", (e) => {
+    if (event.keyCode === 13 || event.which === 13) {
+        e.preventDefault();
+        
         let text = message.value;
         fetch(onlineUrl + '/api/v1/messages', {
             method: "post",
@@ -207,9 +207,7 @@ function getMessage(e) {
             // bot word niet aangesproken
         }
     }
-
-    e.preventDefault();
-}
+})
 /* end of post a message */
 
 class Weather {
