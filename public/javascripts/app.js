@@ -168,7 +168,7 @@ message.addEventListener("keypress", (event) => {
     }
 });
 
-send.addEventListener((e) => {
+send.addEventListener("click", (e) => {
     let text = message.value;
     fetch(onlineUrl + '/api/v1/messages', {
         method: "post",
