@@ -163,7 +163,7 @@ let message = document.querySelector('.message__input');
 
 message.addEventListener("keypress", (event) => {
     if (event.keyCode == 13 || event.which == 13) {
-        e.preventDefault();
+        event.preventDefault();
         send.click();
     }
 });
