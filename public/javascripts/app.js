@@ -45,7 +45,7 @@ fetch(onlineUrl + "/api/v1/messages", {
     json.data.messages.forEach(function(element) {
         console.log(element);
         
-        if(currentUser = element.user) {
+        if(currentUser == element.user) {
             let newMessage = `
             <div class="message" data-id="${element._id}">
                 <div class="profile__image"></div>
