@@ -167,7 +167,8 @@ label {
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  margin-right: 15px; }
+  margin-right: 15px;
+  background-image: url("../../../images/user.png"); }
 
 .message__text {
   margin-top: 5px;
