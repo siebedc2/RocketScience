@@ -2,7 +2,7 @@ let onlineUrl = "https://rocketscience1.herokuapp.com";
 
 // PRIMUS LIVE
 // aanpassen voor online versie
-primus = Primus.connect(url, {
+primus = Primus.connect(onlineUrl, {
     reconnect: {
         max: Infinity,
         min: 500,
