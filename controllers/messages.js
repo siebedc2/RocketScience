@@ -50,7 +50,8 @@ const create = (req, res, next) => {
                 "status": "success",
                 "data": {
                     "message": doc
-                }
+                },
+                "currentUser": req.user.username
             });
         }
     })
