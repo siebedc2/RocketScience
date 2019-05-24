@@ -9,7 +9,7 @@ const usersRouter =           require('./routes/users');
 const messageRouter =         require('./routes/messages');
 const passport =              require('./passport/passport');
 const config =                require('config');
-const robin =                 require('./routes/robin');
+const robinRouter =                 require('./routes/robin');
 
 const mongoose =              require('mongoose');
 // Aangeven dat we met nieuwe syntax werken
@@ -33,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/robin', robinRouter);
 app.use('/api/v1/messages', passport.authenticate('jwt', {session: false}), messageRouter);
 
 // catch 404 and forward to error handler
