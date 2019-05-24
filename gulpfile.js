@@ -1,8 +1,8 @@
-const { src, dest, watch, parallel } =    require('gulp');
-const sass =                              require('gulp-sass');
-const nodemon =                           require('gulp-nodemon');
-const cssnano  =                          require('gulp-cssnano');
-const align =                             require('gulp-align');
+const { src, dest, watch, parallel } =          require('gulp');
+const sass =                                    require('gulp-sass');
+const nodemon =                                 require('gulp-nodemon');
+const cssnano  =                                require('gulp-cssnano');
+const align =                                   require('gulp-align');
 
 function sass2css(done) {
     src("./public/stylesheets/sass/app.sass")
